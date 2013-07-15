@@ -1,9 +1,8 @@
 #!/bin/bash
 
 ###############################################################################################
-# Complete ISPConfig setup script for Debian 6.									 			  #
-# Drew Clardy																				  #
-# http://drewclardy.com							                                              #
+# Complete ISPConfig setup script for Debian 7.									 			  #
+# Original work by Drew Clardy - http://drewclardy.com							                                              #
 ###############################################################################################
 
 # Check if user is root
@@ -231,8 +230,9 @@ echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf
 echo "phpmyadmin phpmyadmin/dbconfig-install boolean false" | debconf-set-selections
 echo "dbconfig-common dbconfig-common/dbconfig-install boolean false" | debconf-set-selections
 
-apt-get -y install apache2 apache2.2-common apache2-doc apache2-mpm-prefork apache2-utils libexpat1 ssl-cert libapache2-mod-php5 php5 php5-common php5-gd php5-mysql php5-imap phpmyadmin php5-cli php5-cgi libapache2-mod-fcgid apache2-suexec php-pear php-auth php5-mcrypt mcrypt php5-imagick imagemagick libapache2-mod-suphp libruby libapache2-mod-ruby php5-curl curl
+apt-get -y install apache2 apache2.2-common apache2-doc apache2-mpm-prefork apache2-utils libexpat1 ssl-cert libapache2-mod-php5 php5 php5-common php5-gd php5-mysql php5-imap phpmyadmin php5-cli php5-cgi libapache2-mod-fcgid apache2-suexec php-pear php-auth php5-mcrypt mcrypt php5-imagick imagemagick libapache2-mod-suphp libruby libapache2-mod-ruby php5-curl curl libapache2-mod-fastcgi
 
+a2enmod actions fastcgi alias
 a2enmod suexec rewrite ssl actions include
 a2enmod dav_fs dav auth_digest
 
