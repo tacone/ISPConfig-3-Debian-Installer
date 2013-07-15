@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 ###############################################################################################
 # Complete ISPConfig setup script for Debian 6.									 			  #
@@ -20,6 +20,7 @@ echo "A tool to auto-install ISPConfig and its dependencies "
 echo "Script is using the DotDeb repo for updated packages"
 echo "================================================================================"
 echo "Please have Server IP and Hostname Ready!"
+echo "Please make sure /etc/apt/sources.list has entries for main contrib non-free"
 echo "Press ENTER to continue.."
 read DUMMY
 
@@ -137,25 +138,25 @@ fi
 
 debian_install_basic (){
 
-#Set hostname and FQDN
-sed -i "s/${serverIP}.*/${serverIP} ${HOSTNAMEFQDN} ${HOSTNAME}/" /etc/hosts
-echo "$HOSTNAME" > /etc/hostname
-/etc/init.d/hostname.sh start >/dev/null 2>&1
+# # Set hostname and FQDN
+# sed -i "s/${serverIP}.*/${serverIP} ${HOSTNAMEFQDN} ${HOSTNAME}/" /etc/hosts
+# echo "$HOSTNAME" > /etc/hostname
+# /etc/init.d/hostname.sh start >/dev/null 2>&1
 
-#Updates server and install commonly used utilities
-cp /etc/apt/sources.list /etc/apt/sources.list.backup
-cat > /etc/apt/sources.list <<EOF
-deb http://ftp.us.debian.org/debian/ squeeze main contrib non-free
-deb http://ftp.us.debian.org/debian/ squeeze-updates main contrib non-free
-deb http://security.debian.org/ squeeze/updates main contrib non-free
-deb http://packages.dotdeb.org squeeze all
-EOF
+# # Updates server and install commonly used utilities
+# cp /etc/apt/sources.list /etc/apt/sources.list.backup
+# cat > /etc/apt/sources.list <<EOF
+# deb http://ftp.us.debian.org/debian/ squeeze main contrib non-free
+# deb http://ftp.us.debian.org/debian/ squeeze-updates main contrib non-free
+# deb http://security.debian.org/ squeeze/updates main contrib non-free
+# deb http://packages.dotdeb.org squeeze all
+# EOF
 
-wget http://www.dotdeb.org/dotdeb.gpg
-cat dotdeb.gpg | apt-key add -
+# wget http://www.dotdeb.org/dotdeb.gpg
+# cat dotdeb.gpg | apt-key add -
 apt-get update
 apt-get -y safe-upgrade
-apt-get -y install vim-nox dnsutils unzip 
+apt-get -y install dnsutils unzip 
 
 } #end function debian_install_basic
 
