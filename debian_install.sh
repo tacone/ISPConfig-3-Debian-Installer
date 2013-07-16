@@ -16,7 +16,7 @@ echo "==========================================================================
 echo "ISPConfig 3 Setup Script,  Written by Drew Clardy with help from other scripts!"
 echo "================================================================================"
 echo "A tool to auto-install ISPConfig and its dependencies "
-echo "Script is using the DotDeb repo for updated packages"
+# echo "Script is using the DotDeb repo for updated packages"
 echo "================================================================================"
 echo "Please have Server IP and Hostname Ready!"
 echo "Please make sure /etc/apt/sources.list has entries for main contrib non-free"
@@ -232,7 +232,7 @@ echo "dbconfig-common dbconfig-common/dbconfig-install boolean false" | debconf-
 
 apt-get -y install apache2 apache2.2-common apache2-doc apache2-mpm-prefork apache2-utils libexpat1 ssl-cert libapache2-mod-php5 php5 php5-common php5-gd php5-mysql php5-imap phpmyadmin php5-cli php5-cgi libapache2-mod-fcgid apache2-suexec php-pear php-auth php5-mcrypt mcrypt php5-imagick imagemagick libapache2-mod-suphp libruby libapache2-mod-ruby php5-curl curl libapache2-mod-fastcgi
 
-a2enmod actions fastcgi alias
+a2enmod actions fastcgi alias fcgid
 a2enmod suexec rewrite ssl actions include
 a2enmod dav_fs dav auth_digest
 
